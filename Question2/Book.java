@@ -1,5 +1,7 @@
 package Question2;
 
+import java.util.Objects;
+
 public class Book {
 	private int isbn;
 	private String bookName;
@@ -37,4 +39,22 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, bookName, isbn);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(author, other.author) && Objects.equals(bookName, other.bookName) && isbn == other.isbn;
+	}
+	
 }
